@@ -39,3 +39,11 @@ The only difference between them is the method of storing the data in the memory
 
 It stored the (src_ip, dst_ip, src_port, dst_port, protocol, delay)
 
+* You can see the libpcap's speed with the prefix [LIBPCAP]
+
+* You can see the server's reaction speed with the prefix [WITH XXX]
+
+* You can see the peak memory with the prefix [MEMORY]
+
+* You should change the 2200000 to you CPU cycles per sec in main.c before compile.
+
