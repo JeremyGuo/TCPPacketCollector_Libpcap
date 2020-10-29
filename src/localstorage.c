@@ -26,7 +26,7 @@ int local_save(struct mdata* data){
     if(fd == -1)
         return LOCAL_FAIL;
     flock(fd, LOCK_EX);
-    lseek(fd, 0, SEEK_SET);
+    lseek(fd, 0, SEEK_END);
     if(write(fd, (void*)data, sizeof(struct mdata)) == -1){
         flock(fd, LOCK_UN);
         return LOCAL_FAIL;

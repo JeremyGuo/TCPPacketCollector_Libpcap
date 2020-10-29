@@ -10,9 +10,9 @@ struct datablock{
 };
 
 struct mdb {
-    struct datablock* table_header[MDB_HASH_POOL_MASK];
-    struct datablock* table_tail[MDB_HASH_POOL_MASK];
-    int table_key[MDB_HASH_POOL_MASK];
+    struct datablock* table_header[MDB_HASH_POOL_SIZE];
+    struct datablock* table_tail[MDB_HASH_POOL_SIZE];
+    int table_key[MDB_HASH_POOL_SIZE];
     unsigned int seed;
     unsigned int seed2;
 }; //Used to store permanent data & store to hard driver.

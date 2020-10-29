@@ -47,14 +47,19 @@ void mdb_init(struct mdb* db){
 }
 
 int mdb_try_insert(struct mdb* db, struct mdata* data){
+//return MDB_FAIL;
+// fprintf(stderr, "INSERTING\n");
     unsigned int hash_val = hashData(data, db->seed);
     int current_key = hashData(data, db->seed2);
     int pos = getValidPos(db, current_key, hash_val);
     struct datablock* block = malloc(sizeof(struct datablock));
     block->data = data;
     block->next_block = NULL;
+// fprintf(stderr, "%d %d %lld\n", pos, current_key, db->table_key[pos]);
+//fprintf(stderr, "%lld\n", db->table_tail[pos]);
     if(db->table_key[pos] == current_key) {
         db->table_tail[pos]->next_block = block;
+	db->table_tail[pos] = block;
     }else if(db->table_key[pos] == -1){
         db->table_key[pos] = current_key;
         db->table_header[pos] = block;
@@ -74,6 +79,7 @@ int mdb_try_insert(struct mdb* db, struct mdata* data){
 }
 
 struct mdata* mdb_search(struct mdb* db, struct mdata* data, int pop){
+//	return NULL;
     unsigned int hash_val = hashDataReversed(data, db->seed);
     int current_key = hashDataReversed(data, db->seed2);
     int pos = getPos(db, current_key, hash_val);

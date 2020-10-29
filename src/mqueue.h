@@ -8,6 +8,7 @@ struct mqueue{
     unsigned int end_p;
     unsigned int qsize;
     unsigned int buffsize;
+    void* mutex_lock;
 }; //Used to store temp data.
 
 void mqueue_init(struct mqueue*, int);
